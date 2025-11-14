@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+#main {
+    width: 70%;
+    margin: 30px auto;
+    padding: 10px;
+}
+
+/* Personal Info Box */
+#personal_info {
+    background-color: #d6eaff;      /* light blue */
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* General box design for all sections */
+.box {
+    background-color: #ffe8cc;      /* light orange */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border-left: 6px solid #ff9900;  /* colorful highlight line */
+}
+
+/* Heading colors */
+h1, h2 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+/* List styling */
+ul li {
+    margin-bottom: 7px;
+}
+
+/* Links */
+a {
+    color: #0073e6;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
