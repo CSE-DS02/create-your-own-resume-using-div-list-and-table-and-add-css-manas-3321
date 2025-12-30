@@ -1,0 +1,247 @@
+/* Import retro/comic fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Comic+Neue:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #FF9900; /* Cartoon Orange */
+    --secondary-color: #4a90e2; /* Bright Blue */
+    --dark-blue: #2c3e50;
+    --border-color: #000000; /* Solid Black outlines */
+    --bg-light: #ddf3f5; /* Light cartoon sky background */
+    --box-bg: #ffffff;
+    --border-thickness: 3px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Use a fun, readable comic font for everything */
+    font-family: 'Comic Neue', cursive;
+    font-weight: 700;
+}
+
+body {
+    background-color: var(--bg-light);
+}
+
+/* --- Navbar --- */
+.navbar {
+    height: 70px;
+    background-color: var(--dark-blue);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-bottom: var(--border-thickness) solid var(--border-color);
+    /* A hard shadow for the whole navbar */
+    box-shadow: 0px 4px 0px rgba(0,0,0,0.2);
+}
+
+.logo {
+    /* Use the bubbly header font */
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    color: var(--primary-color);
+    /* Cartoon text outline effect */
+    text-shadow: 2px 2px 0px var(--border-color);
+    letter-spacing: 1px;
+}
+
+/* Cartoon Search Bar */
+.nav-search {
+    display: flex;
+    justify-content: space-evenly;
+    width: 620px;
+    height: 45px;
+    border: var(--border-thickness) solid var(--border-color);
+    border-radius: 15px; /* Chunky rounded corners */
+    overflow: hidden;
+    box-shadow: 3px 3px 0px var(--border-color); /* Hard shadow pop */
+}
+
+.search-select {
+    background-color: #eee;
+    width: 60px;
+    text-align: center;
+    border: none;
+    border-right: var(--border-thickness) solid var(--border-color);
+    font-weight: bold;
+}
+
+.search-input {
+    width: 100%;
+    font-size: 1.1rem;
+    border: none;
+    padding-left: 15px;
+    outline: none;
+    font-family: 'Comic Neue', cursive;
+}
+
+.search-icon {
+    width: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    background-color: var(--primary-color);
+    color: var(--border-color);
+    border-left: var(--border-thickness) solid var(--border-color);
+    cursor: pointer;
+}
+.search-icon:hover {
+     background-color: #ffad33;
+}
+
+
+/* Cartoon Buttons in Nav */
+.cartoon-btn {
+    padding: 8px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    box-shadow: 2px 2px 0px var(--border-color);
+    cursor: pointer;
+    transition: all 0.1s ease;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.cartoon-btn:active {
+    /* Button press effect */
+    box-shadow: 0px 0px 0px var(--border-color);
+    transform: translate(2px, 2px);
+}
+
+
+/* --- Hero Section --- */
+.hero-section {
+    /* Use a cartoon landscape or pattern here */
+    background-color: var(--secondary-color);
+    background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.2) 0%, transparent 20%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.2) 0%, transparent 20%);
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: var(--border-thickness) solid var(--border-color);
+}
+
+.hero-msg h1 {
+    font-family: 'Fredoka One', cursive;
+    color: white;
+    font-size: 2.5rem;
+    text-shadow: 3px 3px 0px var(--border-color);
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* --- Product Section --- */
+.shop-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 30px 0;
+}
+
+/* The main cartoon product container */
+.cartoon-box {
+    height: 450px;
+    width: 23%;
+    background-color: var(--box-bg);
+    padding: 20px 15px;
+    margin-top: 15px;
+    /* The core cartoon look: thick border + hard shadow */
+    border: var(--border-thickness) solid var(--border-color);
+    border-radius: 20px;
+    box-shadow: 6px 6px 0px var(--border-color);
+    transition: transform 0.2s;
+}
+
+.cartoon-box:hover {
+    /* Slight bounce up on hover */
+    transform: translateY(-5px);
+}
+
+.box-content h2 {
+    font-family: 'Fredoka One', cursive;
+    color: var(--dark-blue);
+    margin-bottom: 10px;
+}
+
+.box-img {
+    height: 250px;
+    background-size: contain; /* changed from cover so whole illustration shows */
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    /* Give images a cutout look */
+    filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.2));
+}
+
+/* "See More" button style */
+.shop-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    border: var(--border-thickness) solid var(--border-color);
+    border-radius: 10px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px var(--border-color);
+}
+.shop-btn:hover {
+     background-color: #ffad33;
+}
+.shop-btn:active {
+    box-shadow: 0px 0px 0px var(--border-color);
+    transform: translate(3px, 3px);
+}
+
+
+/* --- Footer --- */
+footer {
+    margin-top: 30px;
+    border-top: var(--border-thickness) solid var(--border-color);
+}
+
+.foot-panel1 {
+    background-color: var(--secondary-color);
+    color: white;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-family: 'Fredoka One', cursive;
+    border-bottom: var(--border-thickness) solid var(--border-color);
+}
+
+.foot-panel2 {
+    background-color: var(--dark-blue);
+    color: white;
+    height: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 40px;
+}
+
+.foot-column h3 {
+    font-family: 'Fredoka One', cursive;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+ul a {
+    display: block;
+    font-size: 1rem;
+    margin-top: 10px;
+    color: #dddddd;
+    text-decoration: none;
+}
+ul a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}

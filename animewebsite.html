@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crunchyroll Clone - Watch Popular Anime</title>
+    <style>
+        /* --- 1. GENERAL RESET & VARIABLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        :root {
+            --crunchy-orange: #f47521;
+            --crunchy-dark: #000000;
+            --crunchy-gray: #23252b;
+            --text-white: #ffffff;
+            --text-sub: #a0a0a0;
+        }
+
+        body {
+            background-color: var(--crunchy-dark);
+            color: var(--text-white);
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--crunchy-orange);
+        }
+
+        /* --- 2. NAVIGATION BAR --- */
+        header {
+            background-color: var(--crunchy-gray);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            color: var(--crunchy-orange);
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            flex-grow: 1; /* Pushes user icons to the right */
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+        }
+
+        /* --- 3. HERO SECTION (Featured Anime) --- */
+        .hero {
+            height: 500px;
+            background: linear-gradient(to right, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0) 100%), 
+                        url('https://images.unsplash.com/photo-1668293750324-bd77c1f08ca9?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 50px;
+        }
+
+        .hero-content {
+            max-width: 500px;
+        }
+
+        .hero-logo-text {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            color: #ddd;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .btn-watch {
+            background-color: var(--crunchy-orange);
+            color: var(--crunchy-dark);
+            padding: 12px 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-watch:hover {
+            background-color: #ff8c42;
+        }
+
+        /* --- 4. CONTENT SECTIONS (Grid) --- */
+        .section-container {
+            padding: 30px 50px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--crunchy-orange);
+            padding-left: 15px;
+        }
+
+        .anime-grid {
+            display: grid;
+            /* Auto-fit creates a responsive grid that adjusts columns automatically */
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+            gap: 20px;
+        }
+
+        .anime-card {
+            background-color: transparent;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .anime-card:hover {
+            transform: scale(1.03);
+        }
+
+        .card-image {
+            width: 100%;
+            aspect-ratio: 2/3; /* Standard poster ratio */
+            background-color: #333;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            color: var(--text-white);
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; /* Adds "..." if text is too long */
+        }
+
+        .card-meta {
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        /* --- 5. FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--crunchy-gray);
+            margin-top: 50px;
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            header { padding: 0 20px; }
+            .nav-links { display: none; } /* Simple hide for mobile */
+            .hero { height: 400px; padding: 0 20px; }
+            .anime-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <div class="logo">CRUNCHYROLL</div>
+        <nav class="nav-links">
+            <a href="#">Browse</a>
+            <a href="#">Manga</a>
+            <a href="#">Games</a>
+            <a href="#">News</a>
+        </nav>
+        <div class="user-actions">
+            <a href="#">Login</a>
+            <a href="#">Queue</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (Featured Show) -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-logo-text">TOKYO GHOUL</h1>
+            <p class="hero-desc">
+                Tokyo Ghoul follows Ken Kaneki, a shy college student who becomes a half-ghoul 
+                after a date with a ghoul named Rize, which results in her organs being transplanted
+                 into him to save his life.
+            </p>
+            <button class="btn-watch">
+                 Start Watching S2
+            </button>
+        </div>
+    </section>
+
+    <!-- POPULAR ANIME SECTION -->
+    <section class="section-container">
+        <h2 class="section-title">Most Popular</h2>
+        <div class="anime-grid">
+            <!-- Card 1 -->
+            <div class="anime-card">
+                <!-- Using placeholder images. Replace src with real image URLs later -->
+                <img src="https://via.placeholder.com/200x300/333/orange?text=One+Piece" alt="Anime Poster" class="card-image">
+                <div class="card-title">One Piece</div>
+                <div class="card-meta">Series • Sub | Dub</div>
+            </div>
+            <!-- Card 2 -->
+            <div class="anime-card">
+                <img src="https://via.placeholder.com/200x300/333/orange?text=Naruto" alt="Anime Poster" class="card-image">
+                <div class="card-title">Naruto Shippuden</div>
+                <div class="card-meta">Series • Subtd</div>
+            </div>
+            <!-- Card 3 -->
+            <div class="anime-card">
+                <img src="https://via.placeholder.com/200x300/333/orange?text=Demon+Slayer" alt="Anime Poster" class="card-image">
+                <div class="card-title">Demon Slayer: Kimetsu no Yaiba</div>
+                <div class="card-meta">Series • Sub | Dub</div>
+            </div>
+            <!-- Card 4 -->
+            <div class="anime-card">
+                <img src="https://via.placeholder.com/200x300/333/orange?text=Spy+x+Family" alt="Anime Poster" class="card-image">
+                <div class="card-title">SPY x FAMILY</div>
+                <div class="card-meta">Series • Sub | Dub</div>
+            </div>
+             <!-- Card 5 -->
+             <div class="anime-card">
+                <img src="https://via.placeholder.com/200x300/333/orange?text=Chainsaw+Man" alt="Anime Poster" class="card-image">
+                <div class="card-title">Chainsaw Man</div>
+                <div class="card-meta">Series • Sub | Dub</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW EPISODES SECTION -->
+    <section class="section-container">
+        <h2 class="section-title">New Episodes</h2>
+        <div class="anime-grid">
+            <div class="anime-card">
+                <img src="https://via.placeholder.com/200x300/222/orange?text=Blue+Lock" alt="Anime Poster" class="card-image">
+                <div class="card-title">BLUE LOCK</div>
+                <div class="card-meta">Ep 24 • Subtitled</div>
+            </div>
+            <div class="anime-card">
+                <img src="https://via.placeholder.com/200x300/222/orange?text=Dr+Stone" alt="Anime Poster" class="card-image">
+                <div class="card-title">Dr. STONE New World</div>
+                <div class="card-meta">Ep 11 • Sub | Dub</div>
+            </div>
+            <div class="anime-card">
+                <img src="https://via.placeholder.com/200x300/222/orange?text=Vinland+Saga" alt="Anime Poster" class="card-image">
+                <div class="card-title">Vinland Saga Season 2</div>
+                <div class="card-meta">Ep 22 • Subtitled</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Crunchyroll Clone Project. For Educational Purposes Only.</p>
+    </footer>
+
+</body>
+</html>
